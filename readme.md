@@ -3,7 +3,7 @@ Mathematician John Conway's Game of Life created with no javascript libraries- u
 Allows for drawing with mouse pointer to create / kill cells using mouseEvents.
 Stop and Run buttons added to give time to draw create populations because single cells die with each frame (or second).
 
-:rocket: [Click For Demo](https://cellular-automaton.netlify.app/.netlify.com/)
+:rocket: [Click For Demo](https://cellular-automaton.netlify.app)
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/90844a6d-fabf-4ec8-882e-1f1768646c58/deploy-status)](https://app.netlify.com/sites/cellular-automaton/deploys)
 
