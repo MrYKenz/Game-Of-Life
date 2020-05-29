@@ -107,7 +107,7 @@ canvas.addEventListener("mousedown", spawn, false);
 function frame() {
     grid = generation(grid);
     render(grid); // setTimeout(render(grid), 5000);
-    if (alive == 0) { gen = 0; }
+    if (alive == 0) { gen = 0; running = false; }
     document.getElementById("alive").innerText = alive;
     document.getElementById("gen").innerText = gen;
     if (running) {
