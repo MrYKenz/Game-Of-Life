@@ -7,7 +7,9 @@ const cols = canvas.width / res;
 
 let alive = 0;
 let gen = 0;
+let running = false;
 
+// initalise grid object
 let grid = new Array(rows).fill(null).map(() => new Array(cols).fill(0));
 // console.table(grid);
 
@@ -43,7 +45,7 @@ function generation(grid) {
                     if (n == 0 && m == 0) {
                         continue;
                     }
-                    // if neighbours in grid boundary
+                    // if neighbour in grid boundary add to neighbours
                     const x = i + n;
                     const y = j + m;
                     if (x >= 0 && y >= 0 && x < cols && y < rows) {
@@ -95,19 +97,30 @@ function spawn(e) {
         grid[gridX][gridY] = 0;
         alive = alive - 1;
     }
-    document.getElementById("alive").innerText = alive;
     render(grid);
 }
 
-function run() {
-    requestAnimationFrame(frame);
-    function frame() {
-        grid = generation(grid);
-        render(grid);
-        // setTimeout(render(grid), 5000);
+document.getElementById("alive").innerText = alive;
+document.getElementById("gen").innerText = gen;
+canvas.addEventListener("mousedown", spawn, false);
+
+function frame() {
+    grid = generation(grid);
+    render(grid); // setTimeout(render(grid), 5000);
+    if (alive == 0) { gen = 0; }
+    document.getElementById("alive").innerText = alive;
+    document.getElementById("gen").innerText = gen;
+    if (running) {
         requestAnimationFrame(frame);
-        document.getElementById("alive").innerText = alive;
-        document.getElementById("gen").innerText = gen;
     }
 }
-canvas.addEventListener("mousedown", spawn, false);
+
+function run() {
+    running = true;
+    requestAnimationFrame(frame);
+}
+
+function stop() {
+    running = false;
+    cancelAnimationFrame(frame);
+}
